@@ -1,0 +1,3 @@
+Hints for assignment 4 part 1:
+Pass-band gain, stop-band gain, and 3d vi point. 
+
