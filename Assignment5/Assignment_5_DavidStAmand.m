@@ -41,3 +41,4 @@ xlabel('Normalized frequency')
 ylabel('Power/Frequency')
 title(strcat('Mean of periodogram of signal', {' '}, x_name))
 
+

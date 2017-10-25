@@ -1,14 +1,24 @@
 
 function [cor] = mycorel(x,y, min_lag, max_lag)
-lags = min_lag:1:max_lag;
+lags = min_lag:max_lag;
  cor = zeros(length(lags),1);
- m2 = mean(y)^2;
+ m = mean(y);
+ m2 = m^2;
  v = var(y);
- for l = lags
+
+ for lag = lags
  sum = 0;
- for a = x((1 - min_lag):max(x) - max_lag)'
- sum = sum + (y(a)*y(a + l));
+ if lag >= 0
+ this = (1:(length(x) - lag));
  end
- cor(l - min_lag + 1) = (sum/length(y) - m2)/v;
+ if lag < 0
+ this = (1 - lag:length(x));
+ %this = x((1 - min_lag):max(x) - max_lag)';
+ end
+ %this = x((1 - min_lag):max(x) - max_lag)';
+ for a = this
+ sum = sum + (y(a)*y(a + lag));
+ end
+ cor(lag - min_lag + 1) = (sum/length(this) - m2)/v;
  end
 end
